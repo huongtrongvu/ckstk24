@@ -172,11 +172,11 @@ def main():
         apple_check_loop("Yes")
         
         
-main()
+#main()
 
 # # schedule.every(1).minutes.do(apple_check_loop)
-# schedule.every(1).minutes.do(main)
+schedule.every(30).seconds.do(main)
 
-# while True:
-#    schedule.run_pending()
-#    time.sleep(1)
+while True:
+    schedule.run_pending()
+    time.sleep(1)

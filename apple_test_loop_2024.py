@@ -42,8 +42,13 @@ proxy2 = {
     "https": "14a926dcc999d:6cbc621633@203.166.131.101:12323"
 }
 
-allproduct = ['MYWX3ZP/A','MYX23ZP/A',
-              'MYWW3ZP/A','MYX13ZP/A'
+proxy3 = {
+    "https": "htvu91:Appl31pad@193.228.193.86:12321",
+    "http": "htvu91:Appl31pad@193.228.193.86:12321"
+}
+
+allproduct = ['MYWX3ZP/A'#,'MYX23ZP/A',
+              #'MYWW3ZP/A','MYX13ZP/A'
               ]
               # 'MQ9X3ZP/A', 'MQAM3ZP/A', 
               #'MQC53ZP/A', 'MQ9W3ZP/A', 'MQ913LL/A' ,'MQ8W3LL/A', 'MQ8R3LL/A',# 
@@ -68,7 +73,7 @@ numberofstorearound = 3
 def apple_check_loop(proxyconfig):
     # payload = {'api_key': '19afc51481b59e7a8f8b1a8bc4848a90', 'url': 'https://httpbin.org/ip'}
     # r = requests.get('http://api.scraperapi.com', params=payload)
-
+    print(proxyconfig)
     error = '' 
     
     try:
@@ -82,6 +87,8 @@ def apple_check_loop(proxyconfig):
                 a = requests.get(linktoproduct, proxies=proxy1)
             elif proxyconfig == "P2":
                 a = requests.get(linktoproduct, proxies=proxy2)
+            #elif proxyconfig == "P3":
+            #    a = requests.get(linktoproduct, proxies=proxy3)
             else:
                 a = requests.get(linktoproduct)
             check_stock = [[x['partsAvailability'][prod]['pickupSearchQuote'], x['partsAvailability'][prod]['messageTypes']['regular']['storePickupProductTitle'] , x['storeName']] for x in a.json()['body']['content']['pickupMessage']['stores'] ]
@@ -165,7 +172,9 @@ def main():
         url_control = "https://api.telegram.org/bot6228488082:AAHNbCEKtoq55I86Fn_TVLGzBVIq_idZ5sM/getUpdates?offset=-1"
         result_control = requests.get(url_control).json()['result'][0]['message']['text']
         if result_control == 'No':
-            print('it worked')
+            text1 = 'User is stopping the stock check'
+            url = f"https://api.telegram.org/bot{TOKEN5}/sendMessage?chat_id={chat_id5}&text={text1}"
+            print(requests.get(url).json())
         else:
             apple_check_loop(result_control)
     except:
@@ -175,7 +184,7 @@ def main():
 #main()
 
 # # schedule.every(1).minutes.do(apple_check_loop)
-schedule.every(30).seconds.do(main)
+schedule.every(10).seconds.do(main)
 
 while True:
     schedule.run_pending()

@@ -58,8 +58,9 @@ proxy_list = [
     '14a926dcc999d:6cbc621633@203.166.131.101:12323'
 ]
 
-allproduct = ['MYWX3ZP/A'#,'MYX23ZP/A',
-              #'MYWW3ZP/A','MYX13ZP/A'
+allproduct = ['MYWX3ZP/A'#,'MYX23ZP/A', # gold
+              #'MYWW3ZP/A','MYX13ZP/A',  # white
+              #'MYW53LL/A'   #US 256 Gold
               ]
               # 'MQ9X3ZP/A', 'MQAM3ZP/A', 
               #'MQC53ZP/A', 'MQ9W3ZP/A', 'MQ913LL/A' ,'MQ8W3LL/A', 'MQ8R3LL/A',# 

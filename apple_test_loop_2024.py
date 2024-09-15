@@ -43,8 +43,8 @@ proxy2 = {
 }
 
 proxy3 = {
-    "https": "htvu91:Appl31pad@193.228.193.86:12321",
-    "http": "htvu91:Appl31pad@193.228.193.86:12321"
+    "https": "htvu91:Appl31pad@193.228.193.86:11248",
+    "http": "htvu91:Appl31pad@193.228.193.86:11248"
 }
 
 allproduct = ['MYWX3ZP/A'#,'MYX23ZP/A',
@@ -87,8 +87,8 @@ def apple_check_loop(proxyconfig):
                 a = requests.get(linktoproduct, proxies=proxy1)
             elif proxyconfig == "P2":
                 a = requests.get(linktoproduct, proxies=proxy2)
-            #elif proxyconfig == "P3":
-            #    a = requests.get(linktoproduct, proxies=proxy3)
+            elif proxyconfig == "P3":
+                a = requests.get(linktoproduct, proxies=proxy3)
             else:
                 a = requests.get(linktoproduct)
             check_stock = [[x['partsAvailability'][prod]['pickupSearchQuote'], x['partsAvailability'][prod]['messageTypes']['regular']['storePickupProductTitle'] , x['storeName']] for x in a.json()['body']['content']['pickupMessage']['stores'] ]

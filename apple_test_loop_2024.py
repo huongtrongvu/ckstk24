@@ -3,6 +3,7 @@ from threading import main_thread
 #import numpy as np
 import socket
 #import pyodbc
+import random
 
 # from selenium import webdriver
 # from selenium.webdriver.chrome.service import Service
@@ -42,14 +43,14 @@ proxy2 = {
     "https": "14a926dcc999d:6cbc621633@203.166.131.101:12323"
 }
 
-proxy3 = {
-    "https": "htvu91:Appl31pad@193.228.193.86:11248",
-    "http": "htvu91:Appl31pad@193.228.193.86:11248"
-}
+# proxy3 = {
+#     "https": "htvu91:Appl31pad@193.228.193.86:11248",
+#     "http": "htvu91:Appl31pad@193.228.193.86:11248"
+# }
 
 proxy_list = [
-'14a926dcc999d:6cbc621633@203.166.131.101:12323',
-'14a926dcc999d:6cbc621633@88.151.57.78:12323'
+    '14a926dcc999d:6cbc621633@203.166.131.101:12323',
+    '14a926dcc999d:6cbc621633@88.151.57.78:12323'
 ]
 
 allproduct = ['MYWX3ZP/A'#,'MYX23ZP/A',
@@ -93,12 +94,13 @@ def apple_check_loop(proxyconfig):
             elif proxyconfig == "P2":
                 a = requests.get(linktoproduct, proxies=proxy2)
             elif proxyconfig == "P3":
-                proxy = random.choice(proxy_list)
-                proxies = {
-                    'http': proxy,
-                    'https': proxy,
+                proxy3 = random.choice(proxy_list)
+                proxies3 = {
+                    'http': proxy3,
+                    'https': proxy3,
                     }
-                a = requests.get(linktoproduct, proxies=proxies)
+                print(proxies3)
+                a = requests.get(linktoproduct, proxies=proxies3)
             else:
                 a = requests.get(linktoproduct)
             check_stock = [[x['partsAvailability'][prod]['pickupSearchQuote'], x['partsAvailability'][prod]['messageTypes']['regular']['storePickupProductTitle'] , x['storeName']] for x in a.json()['body']['content']['pickupMessage']['stores'] ]

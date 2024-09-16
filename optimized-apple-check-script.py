@@ -57,7 +57,7 @@ def get_product_list():
     elif result_model_control == "USG":
         return ['MYW53LL/A']
     elif result_model_control == "Test":
-        return ['MYNK3ZP/A']
+        return ['MYNK3ZP/A','MYNF3ZP/A']
     else:
         return ['MYWX3ZP/A', 'MYX23ZP/A']
 
@@ -71,6 +71,7 @@ def get_proxy(proxy_config):
     else:
         proxy = random.choice(proxy_list)
         return {"http": proxy, "https": proxy}
+    
 def check_product_stock(prod, proxy_config):
     product_country_code = prod[-4:]
     link = f'https://www.apple.com/{COUNTRY_AND_STORE[product_country_code][0]}/shop/fulfillment-messages?parts.0={prod[0:7]}%2F{prod[-1:]}&searchNearby=true&store={COUNTRY_AND_STORE[product_country_code][1]}'
@@ -164,7 +165,9 @@ def main():
         requests.get(url)
         apple_check_loop("Yes")
 
-schedule.every(10).seconds.do(main)
+main()
+
+schedule.every(59).seconds.do(main)
 
 if __name__ == "__main__":
     while True:

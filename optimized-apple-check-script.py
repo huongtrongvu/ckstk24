@@ -66,11 +66,11 @@ def get_proxy(proxy_config):
         return {"https": "14a926dcc999d:6cbc621633@88.151.57.78:12323"}
     elif proxy_config == "P2":
         return {"https": "14a926dcc999d:6cbc621633@203.166.131.101:12323"}
-    elif proxy_config == "P3":
-        proxy = random.choice(PROXY_LIST)
+    elif proxy_config == "P0":
+        return {"http": "", "https": ""}
+    else:
+        proxy = random.choice(proxy_list)
         return {"http": proxy, "https": proxy}
-    return None
-
 def check_product_stock(prod, proxy_config):
     product_country_code = prod[-4:]
     link = f'https://www.apple.com/{COUNTRY_AND_STORE[product_country_code][0]}/shop/fulfillment-messages?parts.0={prod[0:7]}%2F{prod[-1:]}&searchNearby=true&store={COUNTRY_AND_STORE[product_country_code][1]}'

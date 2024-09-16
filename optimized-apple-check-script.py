@@ -167,7 +167,7 @@ def main():
 
 main()
 
-schedule.every(15).seconds.do(main)
+schedule.every(59).seconds.do(main)
 
 if __name__ == "__main__":
     while True:

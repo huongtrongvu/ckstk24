@@ -28,17 +28,53 @@ TOKEN7 = "7463059683:AAEEEEq5XgK88S-lqHw09n2Hr7l0upUhlWg"
 chat_id7 = "5933792581"
 HANG_NOTIFICATION_TOKEN = "7469851491:AAH4T3MYOf5YUYf-5lxuhQvF4Ui0f7CmJpw"
 HANG_NOTIFICATION_CHAT_ID = "5933792581"
+# CHECK_INTERVAL_TOKEN = "7258696466:AAFyU2WaBrGs2S3hG-lJX1YnAY1GaqGrd5E"
+# CHECK_INTERVAL_CHAT_ID = "5933792581"
 # ... (other token and chat_id definitions)
 
+CHECK_INTERVAL = 60  # seconds
+
 # Proxy configurations
-proxy_list = [
+proxy_list1 = [
     '14ad0d760897d:1d0267825c@5.161.216.207:30032',
     '14ad0d760897d:1d0267825c@5.161.216.207:30118',
     '14ad0d760897d:1d0267825c@5.161.216.207:30128',
     '14ad0d760897d:1d0267825c@5.161.216.207:30129',
     '14ad0d760897d:1d0267825c@5.161.216.207:30130',
     '14a926dcc999d:6cbc621633@88.151.57.78:12323',
-    '14a926dcc999d:6cbc621633@203.166.131.101:12323'
+    '14a926dcc999d:6cbc621633@203.166.131.101:12323',
+    '14adc49740d84:deaa12dbe0@5.161.216.207:31101',
+    '14adc49740d84:deaa12dbe0@5.161.216.207:31102',
+    '14adc49740d84:deaa12dbe0@5.161.216.207:31103',
+    '14adc49740d84:deaa12dbe0@5.161.216.207:31104',
+    '14adc49740d84:deaa12dbe0@5.161.216.207:31105',
+    '14adc49740d84:deaa12dbe0@5.161.216.207:31106',
+    '14adc49740d84:deaa12dbe0@5.161.216.207:31107',
+    '14adc49740d84:deaa12dbe0@5.161.216.207:31108',
+    '14adc49740d84:deaa12dbe0@5.161.216.207:31109',
+    '14adc49740d84:deaa12dbe0@5.161.216.207:31110',
+    # '14adc49740d84:deaa12dbe0@5.161.216.207:31111',
+    # '14adc49740d84:deaa12dbe0@5.161.216.207:31112',
+    # '14adc49740d84:deaa12dbe0@5.161.216.207:31113',
+    # '14adc49740d84:deaa12dbe0@5.161.216.207:31114',
+    # '14adc49740d84:deaa12dbe0@5.161.216.207:31115',
+    # '14adc49740d84:deaa12dbe0@5.161.216.207:31116',
+    # '14adc49740d84:deaa12dbe0@5.161.216.207:31117',
+    # '14adc49740d84:deaa12dbe0@5.161.216.207:31118',
+    # '14adc49740d84:deaa12dbe0@5.161.216.207:31119',
+    '14adc49740d84:deaa12dbe0@5.161.216.207:31120'
+]
+
+proxy_list2 = [
+    '14adc49740d84:deaa12dbe0@5.161.216.207:31111',
+    '14adc49740d84:deaa12dbe0@5.161.216.207:31112',
+    '14adc49740d84:deaa12dbe0@5.161.216.207:31113',
+    '14adc49740d84:deaa12dbe0@5.161.216.207:31114',
+    '14adc49740d84:deaa12dbe0@5.161.216.207:31115',
+    '14adc49740d84:deaa12dbe0@5.161.216.207:31116',
+    '14adc49740d84:deaa12dbe0@5.161.216.207:31117',
+    '14adc49740d84:deaa12dbe0@5.161.216.207:31118',
+    '14adc49740d84:deaa12dbe0@5.161.216.207:31119'
 ]
 
 COUNTRY_AND_STORE = {
@@ -78,10 +114,13 @@ def get_proxy(proxy_config):
         return "http://14a926dcc999d:6cbc621633@88.151.57.78:12323"
     elif proxy_config == "P2":
         return "http://14a926dcc999d:6cbc621633@203.166.131.101:12323"
+    elif proxy_config == "Px":
+        print(proxy_config)
+        return f"http://{random.choice(proxy_list2)}"
     elif proxy_config == "P0":
         return None
     else:
-        return f"http://{random.choice(proxy_list)}"
+        return f"http://{random.choice(proxy_list1)}"
 
 async def check_product_stock(session, prod, proxy_config):
     product_country_code = prod[-4:]
@@ -207,6 +246,8 @@ async def main():
             url = f"https://api.telegram.org/bot{TOKEN5}/sendMessage?chat_id={chat_id5}&text={text1}"
             async with aiohttp.ClientSession() as session:
                 await session.get(url)
+        # elif result_control == 'Restart':
+        #     os.execv(sys.executable, ['python'] + sys.argv)
         else:
             await apple_check_loop(result_control)
     except Exception as e:
@@ -224,7 +265,7 @@ if __name__ == "__main__":
     def run_main():
         loop.run_until_complete(main())
 
-    schedule.every(61).seconds.do(run_main)
+    schedule.every(CHECK_INTERVAL).seconds.do(run_main)
     
     while True:
         try:

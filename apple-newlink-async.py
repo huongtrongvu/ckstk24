@@ -32,7 +32,7 @@ HANG_NOTIFICATION_CHAT_ID = "5933792581"
 # CHECK_INTERVAL_CHAT_ID = "5933792581"
 # ... (other token and chat_id definitions)
 
-CHECK_INTERVAL = 60  # seconds
+CHECK_INTERVAL = 120  # seconds
 
 # Proxy configurations
 proxy_list1 = [

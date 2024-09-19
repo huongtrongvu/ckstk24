@@ -32,7 +32,7 @@ HANG_NOTIFICATION_CHAT_ID = "5933792581"
 # CHECK_INTERVAL_CHAT_ID = "5933792581"
 # ... (other token and chat_id definitions)
 
-CHECK_INTERVAL = 120  # seconds
+CHECK_INTERVAL = 75  # seconds
 
 # Proxy configurations
 proxy_list1 = [
@@ -53,10 +53,10 @@ proxy_list1 = [
     '14adc49740d84:deaa12dbe0@5.161.216.207:31108',
     '14adc49740d84:deaa12dbe0@5.161.216.207:31109',
     '14adc49740d84:deaa12dbe0@5.161.216.207:31110',
-    # '14adc49740d84:deaa12dbe0@5.161.216.207:31111',
-    # '14adc49740d84:deaa12dbe0@5.161.216.207:31112',
-    # '14adc49740d84:deaa12dbe0@5.161.216.207:31113',
-    # '14adc49740d84:deaa12dbe0@5.161.216.207:31114',
+    '14adc49740d84:deaa12dbe0@5.161.216.207:31111',
+    '14adc49740d84:deaa12dbe0@5.161.216.207:31112',
+    '14adc49740d84:deaa12dbe0@5.161.216.207:31113',
+    '14adc49740d84:deaa12dbe0@5.161.216.207:31114',
     # '14adc49740d84:deaa12dbe0@5.161.216.207:31115',
     # '14adc49740d84:deaa12dbe0@5.161.216.207:31116',
     # '14adc49740d84:deaa12dbe0@5.161.216.207:31117',
@@ -66,10 +66,10 @@ proxy_list1 = [
 ]
 
 proxy_list2 = [
-    '14adc49740d84:deaa12dbe0@5.161.216.207:31111',
-    '14adc49740d84:deaa12dbe0@5.161.216.207:31112',
-    '14adc49740d84:deaa12dbe0@5.161.216.207:31113',
-    '14adc49740d84:deaa12dbe0@5.161.216.207:31114',
+    #'14adc49740d84:deaa12dbe0@5.161.216.207:31111',
+    #'14adc49740d84:deaa12dbe0@5.161.216.207:31112',
+    #'14adc49740d84:deaa12dbe0@5.161.216.207:31113',
+    #'14adc49740d84:deaa12dbe0@5.161.216.207:31114',
     '14adc49740d84:deaa12dbe0@5.161.216.207:31115',
     '14adc49740d84:deaa12dbe0@5.161.216.207:31116',
     '14adc49740d84:deaa12dbe0@5.161.216.207:31117',
@@ -107,7 +107,7 @@ async def get_product_list():
     elif result_model_control == "Test":
         return ['MPQC3ZP/A','MPQC3LL/A']
     else:
-        return ['MYWX3ZP/A', 'MYX23ZP/A']
+        return ['MYWX3ZP/A', 'MYX23ZP/A', 'MYX63ZP/A']
 
 def get_proxy(proxy_config):
     if proxy_config == "P1":

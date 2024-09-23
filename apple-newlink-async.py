@@ -103,7 +103,7 @@ async def get_product_list():
     elif result_model_control == "SGG":
         return ['MYWX3ZP/A', 'MYX23ZP/A']
     elif result_model_control == "USG":
-        return ['MYW53LL/A','MYMT3LL/A']
+        return ['MYW53LL/A','MYWE3LL/A']
     elif result_model_control == "Test":
         return ['MXV83LL/A']
     else:

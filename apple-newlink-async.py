@@ -150,7 +150,7 @@ async def process_stock_info(check_stock, product_country_code):
         # Use Markdown formatting
         message = f"*{info[1]}*\n_{info[0]}_\n{info[2]}\n\n"
         list_store = ['Pioneer', 'Washington', 'Bridgeport']
-        if 'Available' in info[0] and any(substring in info[2] for substring in list_store):
+        if 'Available' in info[0] and any(substring in info[2] for substring in list_store) and not("1TB" in info[1]):
             in_stock.append(message)
         else:
             not_in_stock.append(message)
